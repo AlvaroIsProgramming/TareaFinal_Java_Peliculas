@@ -64,6 +64,7 @@ public class GestorDeConexiones {
             System.out.println("Error en la desconexión");
         }
     }
+
     //MOSTRAR TABLAS
     //MOSTRAR TABLAS
     public ResultSet mostrarTabla(String query) {
@@ -79,5 +80,49 @@ public class GestorDeConexiones {
     }
 
     //METODO PARA DE ALTA EN LA BBDD
+    //INSERTAR PELICULA
+    public void insertarPelicula(String id_Pelicula, String nombre_Pelicula, String genero_Pelicula, String director_Pelicula, String duracion_Pelicula) {
+        Statement sta;
+        try {
+            sta = conexion.createStatement();
+            sta.executeUpdate("INSERT INTO pelicula(id_Pelicula, nombre_Pelicula, genero_Pelicula, director_Pelicula,duracion_Pelicula)"
+                    + " VALUES(" + id_Pelicula + ", '" + nombre_Pelicula + "', '" + genero_Pelicula + "', '" + director_Pelicula + "', '" + duracion_Pelicula + "');");
+            sta.close();
+
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error al insertar Pelicula");
+        }
+    }
+
+    //INSERTAR CRITICA
+    public void insertarCritica(String id_Critica, String texto_Critica, String puntuacion_Critica) {
+        Statement sta;
+        try {
+            sta = conexion.createStatement();
+            sta.executeUpdate("INSERT INTO critica(id_Critica, texto_Critica, puntuacion_Critica)"
+                    + " VALUES(" + id_Critica + ", '" + texto_Critica + "', '" + puntuacion_Critica + "');");
+            sta.close();
+
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error al insertar Critica");
+        }
+    }
+    
+     //INSERTAR CRITICO
+    public void insertarCritico(String id_Critico, String nombre_Critico, String id_Critico_Critica) {
+        Statement sta;
+        try {
+            sta = conexion.createStatement();
+            sta.executeUpdate("INSERT INTO critico(id_Critico, nombre_Critico, id_Critico_Critica)"
+                    + " VALUES(" + id_Critico + ", '" + nombre_Critico + "', '" + id_Critico_Critica + "');");
+            sta.close();
+
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error al insertar Critico");
+        }
+    }
     //METODO PARA DAR DE BAJA EN LA BBDD
 }

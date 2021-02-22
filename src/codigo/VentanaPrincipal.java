@@ -297,7 +297,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
             while (rs.next()) {
                 //COGEMOS LOS DATOS DE LAS FILAS
-                modelo.addRow(new Object[]{rs.getString("id_Critico"), rs.getString("nombre_Director"), rs.getString("id_Critico_Critica")});
+                modelo.addRow(new Object[]{rs.getString("id_Critico"), rs.getString("nombre_Critico"), rs.getString("id_Critico_Critica")});
             }
             //SE INSERTAN LOS DATOS EN LA TABLA
             jTableCriticos.setModel(modelo);
