@@ -125,4 +125,43 @@ public class GestorDeConexiones {
         }
     }
     //METODO PARA DAR DE BAJA EN LA BBDD
+     //ELIMINAR PELICULA
+    public void eliminarPelicula(String id_Pelicula) {
+        Statement sta;
+        try {
+            sta = conexion.createStatement();
+            sta.executeUpdate("DELETE FROM pelicula WHERE id_Pelicula = " + id_Pelicula + ";");
+            sta.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error al eliminar película.");
+        }
+    }
+    
+       //ELIMINAR CRITICA
+    public void eliminarCritica(String id_Critica) {
+        Statement sta;
+        try {
+            sta = conexion.createStatement();
+            sta.executeUpdate("DELETE FROM critica WHERE id_Critica = " + id_Critica + ";");
+            sta.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error al eliminar Critica.");
+        }
+    }
+    
+       //ELIMINAR CRITICO HACE FALTA CASCADA POR FOREIGN KEY
+    public void eliminarCritico(String id_Critico) {
+        Statement sta;
+        try {
+            sta = conexion.createStatement();
+            sta.executeUpdate("DELETE FROM critico WHERE id_Critico = " + id_Critico + ";");
+            sta.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error al eliminar Critico.");
+        }
+    }
+
 }
