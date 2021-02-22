@@ -5,6 +5,10 @@
  */
 package codigo;
 
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author aghsk
@@ -20,6 +24,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         manager.conection();
+
+        //MOSTRAR TABLAS
+        mostrarTablaPelicula();
+        mostrarTablaCritica();
+        mostrarTablaCritico();
+
         //WINDOWS LISTENER QUE DETECTA CUANDO SE CIERRA LA VENTANA 
         //SI SE CIERRA TE DESCONECTAS DE LA BBDD
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -210,4 +220,91 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable jTableCriticos;
     private javax.swing.JTable jTablePeliculas;
     // End of variables declaration//GEN-END:variables
+
+    private void mostrarTablaPelicula() {
+        //ESTE METODO ES PARA CARGAR LOS DATOS DE LA TABLA PELICULA
+        //SE CREA LA TABLA
+        DefaultTableModel modelo = new DefaultTableModel();
+        //AQUI SE INSERTA LA CONSULTA QUE VA EN POOLCONEXIONES
+        //CONSULTA SIMPLE YA QUE COGEMOS TODOS LOS DATOS
+        ResultSet rs = (ResultSet) manager.mostrarTabla("SELECT * FROM pelicula ORDER BY id_Pelicula");
+        try {
+            //COGEMOS LOS NOMBRES DE LA COLUMNAS
+            ResultSetMetaData metaDatos = rs.getMetaData();
+            int numeroColumnas = metaDatos.getColumnCount();
+            String[] etiquetas = new String[numeroColumnas];
+            for (int i = 0; i < numeroColumnas; i++) {
+                etiquetas[i] = metaDatos.getColumnLabel(i + 1);
+                modelo.setColumnIdentifiers(etiquetas);
+            }
+            while (rs.next()) {
+                //COGEMOS LOS DATOS DE LAS FILAS
+                modelo.addRow(new Object[]{rs.getString("id_Pelicula"), rs.getString("nombre_Pelicula"),
+                    rs.getString("genero_Pelicula"), rs.getString("director_Pelicula"), rs.getString("duracion_Pelicula")});
+            }
+            //SE INSERTAN LOS DATOS EN LA TABLA
+            jTablePeliculas.setModel(modelo);
+            rs.close();
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }
+    }
+
+    private void mostrarTablaCritica() {
+        //ESTE METODO ES PARA CARGAR LOS DATOS DE LA TABLA CRITICA
+        //ESTE METODO ES PARA CARGAR LOS DATOS DE LA TABLA CRITICO
+        //SE CREA LA TABLA
+        DefaultTableModel modelo = new DefaultTableModel();
+        //AQUI SE INSERTA LA CONSULTA QUE VA EN POOLCONEXIONES
+        //CONSULTA SIMPLE YA QUE COGEMOS TODOS LOS DATOS
+        ResultSet rs = (ResultSet) manager.mostrarTabla("SELECT * FROM critica ORDER BY id_Critica");
+        try {
+            //COGEMOS LOS NOMBRES DE LA COLUMNAS
+            ResultSetMetaData metaDatos = rs.getMetaData();
+            int numeroColumnas = metaDatos.getColumnCount();
+            String[] etiquetas = new String[numeroColumnas];
+            for (int i = 0; i < numeroColumnas; i++) {
+                etiquetas[i] = metaDatos.getColumnLabel(i + 1);
+                modelo.setColumnIdentifiers(etiquetas);
+            }
+            while (rs.next()) {
+                //COGEMOS LOS DATOS DE LAS FILAS
+                modelo.addRow(new Object[]{rs.getString("id_Critica"), rs.getString("texto_Critica"), rs.getString("puntuacion_Critica")});
+            }
+            //SE INSERTAN LOS DATOS EN LA TABLA
+            jTableCriticas.setModel(modelo);
+            rs.close();
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }
+    }
+
+    private void mostrarTablaCritico() {
+        //ESTE METODO ES PARA CARGAR LOS DATOS DE LA TABLA CRITICO
+        //SE CREA LA TABLA
+        DefaultTableModel modelo = new DefaultTableModel();
+        //AQUI SE INSERTA LA CONSULTA QUE VA EN POOLCONEXIONES
+        //CONSULTA SIMPLE YA QUE COGEMOS TODOS LOS DATOS
+        ResultSet rs = (ResultSet) manager.mostrarTabla("SELECT * FROM critico ORDER BY id_Critico");
+        try {
+            //COGEMOS LOS NOMBRES DE LA COLUMNAS
+            ResultSetMetaData metaDatos = rs.getMetaData();
+            int numeroColumnas = metaDatos.getColumnCount();
+            String[] etiquetas = new String[numeroColumnas];
+            for (int i = 0; i < numeroColumnas; i++) {
+                etiquetas[i] = metaDatos.getColumnLabel(i + 1);
+                modelo.setColumnIdentifiers(etiquetas);
+            }
+            while (rs.next()) {
+                //COGEMOS LOS DATOS DE LAS FILAS
+                modelo.addRow(new Object[]{rs.getString("id_Critico"), rs.getString("nombre_Director"), rs.getString("id_Critico_Critica")});
+            }
+            //SE INSERTAN LOS DATOS EN LA TABLA
+            jTableCriticos.setModel(modelo);
+            rs.close();
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }
+    }
+
 }
