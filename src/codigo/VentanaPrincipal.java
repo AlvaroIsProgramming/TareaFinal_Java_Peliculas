@@ -57,6 +57,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanelCriticas = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableCriticas = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jTextFieldid_Critica = new javax.swing.JTextField();
+        jTextFieldid_Critico_Critica = new javax.swing.JTextField();
+        jTextFieldTexto_Critica = new javax.swing.JTextField();
+        jButtonAñadirCritica = new javax.swing.JButton();
         jPanelCriticos = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableCriticos = new javax.swing.JTable();
@@ -108,13 +115,46 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTableCriticas);
 
+        jLabel1.setText("id:");
+
+        jLabel2.setText("Critica:");
+
+        jLabel3.setText("id_Critico_Critica:");
+
+        jButtonAñadirCritica.setText("Añadir Critica");
+        jButtonAñadirCritica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAñadirCriticaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelCriticasLayout = new javax.swing.GroupLayout(jPanelCriticas);
         jPanelCriticas.setLayout(jPanelCriticasLayout);
         jPanelCriticasLayout.setHorizontalGroup(
             jPanelCriticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCriticasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 873, Short.MAX_VALUE)
+                .addGroup(jPanelCriticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelCriticasLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 873, Short.MAX_VALUE))
+                    .addGroup(jPanelCriticasLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanelCriticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelCriticasLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldid_Critica, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelCriticasLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldid_Critico_Critica, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelCriticasLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldTexto_Critica, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(126, 126, 126)
+                                .addComponent(jButtonAñadirCritica)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanelCriticasLayout.setVerticalGroup(
@@ -122,7 +162,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanelCriticasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addGap(75, 75, 75)
+                .addGroup(jPanelCriticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextFieldid_Critica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelCriticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextFieldTexto_Critica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonAñadirCritica))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelCriticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextFieldid_Critico_Critica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         jTabbedPane.addTab("Criticas", jPanelCriticas);
@@ -173,6 +226,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonAñadirCriticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAñadirCriticaActionPerformed
+        // BOTON AÑADIR CRITICA
+        manager.insertarCritica(jTextFieldid_Critica.getText(), jTextFieldTexto_Critica.getText(), jTextFieldid_Critico_Critica.getText());
+    }//GEN-LAST:event_jButtonAñadirCriticaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -209,6 +267,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAñadirCritica;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanelCriticas;
     private javax.swing.JPanel jPanelCriticos;
     private javax.swing.JPanel jPanelPeliculas;
@@ -219,6 +281,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable jTableCriticas;
     private javax.swing.JTable jTableCriticos;
     private javax.swing.JTable jTablePeliculas;
+    private javax.swing.JTextField jTextFieldTexto_Critica;
+    private javax.swing.JTextField jTextFieldid_Critica;
+    private javax.swing.JTextField jTextFieldid_Critico_Critica;
     // End of variables declaration//GEN-END:variables
 
     private void mostrarTablaPelicula() {
