@@ -97,12 +97,12 @@ public class GestorDeConexiones {
     }
 
     //INSERTAR CRITICA
-    public void insertarCritica(String id_Critica, String texto_Critica, String puntuacion_Critica) {
+    public void insertarCritica(String id_Critica, String cod_critico, String critica_Nombre, String texto_Critica, String puntuacion_Critica) {
         Statement sta;
         try {
             sta = conexion.createStatement();
-            sta.executeUpdate("INSERT INTO critica(id_Critica, texto_Critica, puntuacion_Critica)"
-                    + " VALUES(" + id_Critica + ", '" + texto_Critica + "', '" + puntuacion_Critica + "');");
+            sta.executeUpdate("INSERT INTO critica(id_Critica, cod_critico,critica_Nombre, texto_Critica, puntuacion_Critica)"
+                    + " VALUES(" + id_Critica + ", '" + cod_critico + "', '" + critica_Nombre + "', '" + texto_Critica + "', '" + puntuacion_Critica + "');");
             sta.close();
 
         } catch (SQLException ex) {
@@ -112,12 +112,12 @@ public class GestorDeConexiones {
     }
 
     //INSERTAR CRITICO
-    public void insertarCritico(String id_Critico, String nombre_Critico, String id_Critico_Critica) {
+    public void insertarCritico(String id_Critico, String nombre_Critico, String cod_Critico_Critica) {
         Statement sta;
         try {
             sta = conexion.createStatement();
-            sta.executeUpdate("INSERT INTO critico(id_Critico, nombre_Critico, id_Critico_Critica)"
-                    + " VALUES(" + id_Critico + ", '" + nombre_Critico + "', '" + id_Critico_Critica + "');");
+            sta.executeUpdate("INSERT INTO critico(id_Critico, nombre_Critico, cod_Critico_Critica)"
+                    + " VALUES(" + id_Critico + ", '" + nombre_Critico + "', '" + cod_Critico_Critica + "');");
             sta.close();
 
         } catch (SQLException ex) {
@@ -140,13 +140,19 @@ public class GestorDeConexiones {
         }
     }
 
-    //ELIMINAR CRITICA
+    //ELIMINAR CRITICA 
     public void eliminarCritica(String id_Critica) {
+
         Statement sta;
         try {
+
             sta = conexion.createStatement();
+
+            //sta.executeUpdate("DELETE FROM critico WHERE id_Critico_Critica= " + id_Critica + ";");
             sta.executeUpdate("DELETE FROM critica WHERE id_Critica = " + id_Critica + ";");
+
             sta.close();
+
         } catch (SQLException ex) {
             System.out.println(ex.toString());
             System.out.println("Error al eliminar Critica.");
@@ -223,4 +229,37 @@ public class GestorDeConexiones {
             }
         }
     }
+
+    //EDITAR DATOS DE LA BBDD
+    //CRITICO, SOLO SE PUEDE CAMBIAR EL NOMBRE Y EL ID DE LA CRITICA SI SE PUEDE
+    public void editarCritico(String nombre_Critico, String cod_Critico_Critica) {
+        Statement sta;
+        try {
+
+            conexion.setAutoCommit(false);
+            sta = conexion.createStatement();
+
+            sta.executeUpdate("UPDATE critico SET nombre_Critico = '" + nombre_Critico
+                    + "', cod_Critico_Critica = '"
+                    + cod_Critico_Critica + ";");
+
+            sta.close();
+
+            conexion.commit();
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error al actualizar critico.");
+            if (conexion != null) {
+                try {
+                    conexion.rollback();
+                } catch (SQLException ex1) {
+                    System.out.println(ex1.toString());
+                    System.out.println("Error al actualizar critico.");
+                }
+            }
+        }
+
+    }
+
 }
