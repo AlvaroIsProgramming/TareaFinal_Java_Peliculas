@@ -26,6 +26,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         manager.conection();
 
         //MOSTRAR TABLAS
+        manager.cosulta_PreparedStatement("Spielberg");
+        //manager.insertarConCommit();
+        
         mostrarTablaPelicula();
         mostrarTablaCritica();
         mostrarTablaCritico();
@@ -248,9 +251,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAñadirCriticaActionPerformed
 
     private void jButtonBorrarCriticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarCriticaActionPerformed
-          // BOTON ELIMINAR CRITICA
-          manager.eliminarCritica(jTextFieldBorrarCritica.getText());
-          mostrarTablaCritica();
+        // BOTON ELIMINAR CRITICA
+        manager.eliminarCritica(jTextFieldBorrarCritica.getText());
+        mostrarTablaCritica();
     }//GEN-LAST:event_jButtonBorrarCriticaActionPerformed
 
     /**
@@ -338,7 +341,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             System.out.println(ex.toString());
         }
     }
-
+    
     private void mostrarTablaCritica() {
         //ESTE METODO ES PARA CARGAR LOS DATOS DE LA TABLA CRITICA
         //ESTE METODO ES PARA CARGAR LOS DATOS DE LA TABLA CRITICO
@@ -367,7 +370,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             System.out.println(ex.toString());
         }
     }
-
+    
     private void mostrarTablaCritico() {
         //ESTE METODO ES PARA CARGAR LOS DATOS DE LA TABLA CRITICO
         //SE CREA LA TABLA
@@ -395,5 +398,5 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             System.out.println(ex.toString());
         }
     }
-
+    
 }

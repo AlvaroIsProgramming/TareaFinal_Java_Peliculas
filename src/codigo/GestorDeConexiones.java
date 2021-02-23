@@ -7,6 +7,7 @@ package codigo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -109,8 +110,8 @@ public class GestorDeConexiones {
             System.out.println("Error al insertar Critica");
         }
     }
-    
-     //INSERTAR CRITICO
+
+    //INSERTAR CRITICO
     public void insertarCritico(String id_Critico, String nombre_Critico, String id_Critico_Critica) {
         Statement sta;
         try {
@@ -124,8 +125,9 @@ public class GestorDeConexiones {
             System.out.println("Error al insertar Critico");
         }
     }
+
     //METODO PARA DAR DE BAJA EN LA BBDD
-     //ELIMINAR PELICULA
+    //ELIMINAR PELICULA
     public void eliminarPelicula(String id_Pelicula) {
         Statement sta;
         try {
@@ -137,8 +139,8 @@ public class GestorDeConexiones {
             System.out.println("Error al eliminar película.");
         }
     }
-    
-       //ELIMINAR CRITICA
+
+    //ELIMINAR CRITICA
     public void eliminarCritica(String id_Critica) {
         Statement sta;
         try {
@@ -150,8 +152,8 @@ public class GestorDeConexiones {
             System.out.println("Error al eliminar Critica.");
         }
     }
-    
-       //ELIMINAR CRITICO HACE FALTA CASCADA POR FOREIGN KEY
+
+    //ELIMINAR CRITICO HACE FALTA CASCADA POR FOREIGN KEY
     public void eliminarCritico(String id_Critico) {
         Statement sta;
         try {
@@ -164,4 +166,61 @@ public class GestorDeConexiones {
         }
     }
 
+    //PREPARED STATEMENT
+    public void cosulta_PreparedStatement(String cosaAConsultar) {
+        String query = "SELECT * FROM pelicula WHERE director_Pelicula= ?;";
+
+        try {
+            PreparedStatement pst = conexion.prepareStatement(query);
+            pst.setString(1, cosaAConsultar);
+
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                System.out.println("ID: " + rs.getString("id_Pelicula")
+                        + ", Titulo: " + rs.getString("nombre_Pelicula")
+                        + ", Genero: " + rs.getString("genero_Pelicula")
+                        + ", Director: " + rs.getString("director_Pelicula")
+                        + ", Duracion: " + rs.getString("duracion_Pelicula"));
+            }
+
+            rs.close();
+            pst.close();
+
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error en el Prepared Statement.");
+        }
+    }
+
+    //TRANSACCIONES
+    public void insertarConCommit() {
+        Statement sta;
+        try {
+            conexion.setAutoCommit(false);
+
+            sta = conexion.createStatement();
+
+            sta.executeUpdate("INSERT INTO pelicula VALUE ('1', 'JAWS', 'Suspense', 'Spielberg', '140 min');");
+            sta.executeUpdate("INSERT INTO pelicula VALUE ('2', 'JAWS 2', 'Suspense', 'Spielberg', '148 min');");
+            sta.executeUpdate("INSERT INTO pelicula VALUE ('3', 'JAWS 3', 'Suspense', 'Spielberg', '150 min');");
+
+            sta.close();
+
+            conexion.commit();
+
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error en el InsertConCommit.");
+
+            if (conexion != null) {
+                try {
+                    conexion.rollback();
+                } catch (SQLException ex1) {
+                    System.out.println(ex1.toString());
+                    System.out.println("Error en el InsertConCommit.");
+
+                }
+            }
+        }
+    }
 }
