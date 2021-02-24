@@ -159,12 +159,15 @@ public class GestorDeConexiones {
         }
     }
 
-    //ELIMINAR CRITICO HACE FALTA CASCADA POR FOREIGN KEY
-    public void eliminarCritico(String id_Critico) {
+    //ELIMINAR CRITICO HACE FALTA ELIMINAR CRITICAS ANTES POR FOREIGN KEY
+    public void eliminarCritico(String cod_Critico_Critica) {
         Statement sta;
         try {
             sta = conexion.createStatement();
-            sta.executeUpdate("DELETE FROM critico WHERE id_Critico = " + id_Critico + ";");
+
+            sta.executeUpdate("DELETE FROM critica WHERE cod_critico = " + cod_Critico_Critica + ";");
+            sta.executeUpdate("DELETE FROM critico WHERE cod_Critico_Critica = " + cod_Critico_Critica + ";");
+
             sta.close();
         } catch (SQLException ex) {
             System.out.println(ex.toString());
@@ -259,7 +262,6 @@ public class GestorDeConexiones {
                 }
             }
         }
-
     }
-
+    //PARA PODER EDITAR Y AUTOCOMPLETAR CAMPOS
 }

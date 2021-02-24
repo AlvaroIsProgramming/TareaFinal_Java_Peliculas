@@ -5,8 +5,11 @@
  */
 package codigo;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -31,6 +34,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         mostrarTablaPelicula();
         mostrarTablaCritica();
         mostrarTablaCritico();
+
+        editarTablas();
 
         //WINDOWS LISTENER QUE DETECTA CUANDO SE CIERRA LA VENTANA 
         //SI SE CIERRA TE DESCONECTAS DE LA BBDD
@@ -68,7 +73,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButtonAñadirCritica = new javax.swing.JButton();
         jTextFieldBorrarCritica = new javax.swing.JTextField();
         jButtonBorrarCritica = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jTextFieldcod_Critico = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -85,6 +89,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButtonAñadirCritico = new javax.swing.JButton();
         jTextFieldBorrarCritico = new javax.swing.JTextField();
         jButtonBorrarCritico = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -153,8 +158,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("(Al eliminar una critica se eliminará tambien al critico como consecuencia)");
-
         jLabel8.setText("Cod_Critico:");
 
         jLabel9.setText("Pelicula:");
@@ -199,9 +202,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGroup(jPanelCriticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextFieldcod_Critico, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
                             .addComponent(jTextFieldCritica_Nombre))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addGap(25, 25, 25))
+                .addGap(25, 480, Short.MAX_VALUE))
         );
         jPanelCriticasLayout.setVerticalGroup(
             jPanelCriticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,8 +218,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldid_Critica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextFieldcod_Critico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(jTextFieldcod_Critico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelCriticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -268,6 +268,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jLabel10.setText("(Al eliminar un critico se eliminaran tambien sus criticas como consecuencia)");
+
         javax.swing.GroupLayout jPanelCriticosLayout = new javax.swing.GroupLayout(jPanelCriticos);
         jPanelCriticos.setLayout(jPanelCriticosLayout);
         jPanelCriticosLayout.setHorizontalGroup(
@@ -293,32 +295,40 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGroup(jPanelCriticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonAñadirCritico)
                             .addComponent(jTextFieldcod_Critico_Critica))))
-                .addGap(127, 127, 127)
-                .addComponent(jTextFieldBorrarCritico, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonBorrarCritico)
+                .addGroup(jPanelCriticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelCriticosLayout.createSequentialGroup()
+                        .addGap(127, 127, 127)
+                        .addComponent(jTextFieldBorrarCritico, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonBorrarCritico))
+                    .addGroup(jPanelCriticosLayout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addComponent(jLabel10)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelCriticosLayout.setVerticalGroup(
             jPanelCriticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCriticosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addGroup(jPanelCriticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextFieldid_Critico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldBorrarCritico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonBorrarCritico))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelCriticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextFieldnombre_Critico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelCriticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelCriticosLayout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addGroup(jPanelCriticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jTextFieldid_Critico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldBorrarCritico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonBorrarCritico))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanelCriticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jTextFieldnombre_Critico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelCriticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jTextFieldcod_Critico_Critica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addComponent(jButtonAñadirCritico)
                 .addGap(35, 35, 35))
         );
@@ -404,12 +414,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonBorrarCritica;
     private javax.swing.JButton jButtonBorrarCritico;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanelCriticas;
@@ -522,4 +532,40 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }
 
+    private void editarTablas() {
+        // METODO PARA QUE SE AUTOCOMPLETEN LOS CAMPOS AL PULSAR UN DATO DE LA TABLA
+        //EDITAR TABLA ALBUM
+        //SOLO SE EDITA EL NOMBRE, LA DISCOGRAFICA, EL LIDER Y EL GENERO
+        jTableCriticas.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                int filaCriticas = jTableCriticas.getSelectedRow();
+                if (filaCriticas == -1) {
+                    JOptionPane.showMessageDialog(null, "No ha seleccionado ninguna fila.");
+                } else {
+
+                    String nombreCritica = (String) jTableCriticas.getValueAt(filaCriticas, 2);
+                    String textoCritica = (String) jTableCriticas.getValueAt(filaCriticas, 3);
+                    String puntiacionCritica = (String) jTableCriticas.getValueAt(filaCriticas, 4);
+                    jTextFieldCritica_Nombre.setText(nombreCritica);
+                    jTextFieldTexto_Critica.setText(textoCritica);
+                    jTextFieldPuntuacion_Critica.setText(puntiacionCritica);
+                }
+            }
+        });
+        //EDITAR TABLA CANCIONES
+        //SOLO SE EDITA EL NOMBRE Y LA DURACION DE LA CANCION
+        jTableCriticos.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent ev) {
+                int filaCanciones = jTableCriticos.getSelectedRow();
+                if (filaCanciones == -1) {
+                    JOptionPane.showMessageDialog(null, "No has seleccionado ninguna fila.");
+                } else {
+                    String nombreCritico = (String) jTableCriticos.getValueAt(filaCanciones, 1);
+                    jTextFieldnombre_Critico.setText(nombreCritico);
+                }
+            }
+        });
+    }
 }
