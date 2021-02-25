@@ -265,7 +265,7 @@ public class GestorDeConexiones {
         } catch (SQLException ex) {
             System.out.println(ex.toString());
             System.out.println("Error en el Prepared Statement.");
-            return "A";
+            return "ERROR";
         }
     }
 
@@ -298,7 +298,7 @@ public class GestorDeConexiones {
         } catch (SQLException ex) {
             System.out.println(ex.toString());
             System.out.println("Error en el Prepared Statement.");
-            return "A";
+            return "ERROR";
         }
     }
     //BUSQUEDA POR GENERO
@@ -331,7 +331,7 @@ public class GestorDeConexiones {
         } catch (SQLException ex) {
             System.out.println(ex.toString());
             System.out.println("Error en el Prepared Statement.");
-            return "A";
+            return "ERROR";
         }
     }
 
