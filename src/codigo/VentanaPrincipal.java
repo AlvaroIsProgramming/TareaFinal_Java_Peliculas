@@ -20,6 +20,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     //PARA ACCEDER A LOS METODOS DE GESTORDECONEXIONES
     GestorDeConexiones manager = new GestorDeConexiones();
+    String consulta;
 
     /**
      * Creates new form VentanaPrincipal
@@ -29,7 +30,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         manager.conection();
 
         //MOSTRAR TABLAS
-        // manager.cosulta_PreparedStatement("Spielberg");
+        // manager.cosulta_PeliculasDirector("Spielberg");
         // manager.insertarConCommit();
         mostrarTablaPelicula();
         mostrarTablaCritica();
@@ -61,6 +62,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanelPeliculas = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablePeliculas = new javax.swing.JTable();
+        jLabelinfo_Peliculas = new javax.swing.JLabel();
+        jTextFieldBusqueda_Director = new javax.swing.JTextField();
+        jButtonBuscarDirector = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
+        jTextFieldBusquedaCriticas = new javax.swing.JTextField();
+        jButtonBuscarCriticas = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jTextFieldBuscarGenero = new javax.swing.JTextField();
+        jButtonBuscarGenero = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
         jPanelCriticas = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableCriticas = new javax.swing.JTable();
@@ -77,6 +90,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTextFieldcod_Critico = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jTextFieldCritica_Nombre = new javax.swing.JTextField();
+        jButtonEditarCriticas = new javax.swing.JButton();
+        jLabelinfo_Critica = new javax.swing.JLabel();
         jPanelCriticos = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableCriticos = new javax.swing.JTable();
@@ -90,6 +105,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTextFieldBorrarCritico = new javax.swing.JTextField();
         jButtonBorrarCritico = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        jButtonEditarCritico = new javax.swing.JButton();
+        jLabelinfo_Critico = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,13 +123,70 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTablePeliculas);
 
+        jButtonBuscarDirector.setText("Buscar");
+        jButtonBuscarDirector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarDirectorActionPerformed(evt);
+            }
+        });
+
+        jScrollPane5.setViewportView(jTextPane1);
+
+        jButtonBuscarCriticas.setText("Buscar");
+        jButtonBuscarCriticas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarCriticasActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Director:");
+
+        jLabel11.setText("Cod_Crit:");
+
+        jButtonBuscarGenero.setText("Buscar");
+        jButtonBuscarGenero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarGeneroActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setText("Genero:");
+
         javax.swing.GroupLayout jPanelPeliculasLayout = new javax.swing.GroupLayout(jPanelPeliculas);
         jPanelPeliculas.setLayout(jPanelPeliculasLayout);
         jPanelPeliculasLayout.setHorizontalGroup(
             jPanelPeliculasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPeliculasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 873, Short.MAX_VALUE)
+                .addGroup(jPanelPeliculasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 908, Short.MAX_VALUE)
+                    .addGroup(jPanelPeliculasLayout.createSequentialGroup()
+                        .addGap(118, 118, 118)
+                        .addComponent(jLabelinfo_Peliculas, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanelPeliculasLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanelPeliculasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelPeliculasLayout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextFieldBusquedaCriticas, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPeliculasLayout.createSequentialGroup()
+                                .addGroup(jPanelPeliculasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel12))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanelPeliculasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextFieldBuscarGenero, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldBusqueda_Director))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelPeliculasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonBuscarDirector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonBuscarCriticas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonBuscarGenero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(29, 29, 29)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(73, 73, 73)))
                 .addContainerGap())
         );
         jPanelPeliculasLayout.setVerticalGroup(
@@ -120,7 +194,30 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanelPeliculasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabelinfo_Peliculas, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelPeliculasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelPeliculasLayout.createSequentialGroup()
+                        .addComponent(jScrollPane5)
+                        .addGap(12, 12, 12))
+                    .addGroup(jPanelPeliculasLayout.createSequentialGroup()
+                        .addGap(0, 60, Short.MAX_VALUE)
+                        .addGroup(jPanelPeliculasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldBuscarGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonBuscarGenero)
+                            .addComponent(jLabel12))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanelPeliculasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonBuscarDirector)
+                            .addComponent(jTextFieldBusqueda_Director, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelPeliculasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldBusquedaCriticas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonBuscarCriticas)
+                            .addComponent(jLabel11))
+                        .addGap(46, 46, 46))))
         );
 
         jTabbedPane.addTab("Peliculas", jPanelPeliculas);
@@ -162,47 +259,59 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel9.setText("Pelicula:");
 
+        jButtonEditarCriticas.setText("Editar");
+        jButtonEditarCriticas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarCriticasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelCriticasLayout = new javax.swing.GroupLayout(jPanelCriticas);
         jPanelCriticas.setLayout(jPanelCriticasLayout);
         jPanelCriticasLayout.setHorizontalGroup(
             jPanelCriticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCriticasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 873, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 908, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCriticasLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabelinfo_Critica, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTextFieldBorrarCritica, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonBorrarCritica)
                 .addGap(137, 137, 137))
             .addGroup(jPanelCriticasLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(jPanelCriticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanelCriticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonEditarCriticas)
                     .addGroup(jPanelCriticasLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldPuntuacion_Critica))
-                    .addGroup(jPanelCriticasLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldid_Critica, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelCriticasLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldTexto_Critica)))
-                .addGap(42, 42, 42)
-                .addGroup(jPanelCriticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonAñadirCritica)
-                    .addGroup(jPanelCriticasLayout.createSequentialGroup()
+                        .addGroup(jPanelCriticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanelCriticasLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldPuntuacion_Critica))
+                            .addGroup(jPanelCriticasLayout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldid_Critica, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelCriticasLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldTexto_Critica)))
+                        .addGap(42, 42, 42)
                         .addGroup(jPanelCriticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanelCriticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldcod_Critico, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-                            .addComponent(jTextFieldCritica_Nombre))))
-                .addGap(25, 480, Short.MAX_VALUE))
+                            .addComponent(jButtonAñadirCritica)
+                            .addGroup(jPanelCriticasLayout.createSequentialGroup()
+                                .addGroup(jPanelCriticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanelCriticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextFieldcod_Critico, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldCritica_Nombre))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelCriticasLayout.setVerticalGroup(
             jPanelCriticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,7 +321,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelCriticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldBorrarCritica, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonBorrarCritica))
+                    .addComponent(jButtonBorrarCritica)
+                    .addComponent(jLabelinfo_Critica, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(jPanelCriticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -221,16 +331,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(jTextFieldcod_Critico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelCriticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
                     .addComponent(jTextFieldPuntuacion_Critica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(jTextFieldCritica_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldCritica_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(14, 14, 14)
                 .addGroup(jPanelCriticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
                     .addComponent(jTextFieldTexto_Critica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonAñadirCritica))
-                .addContainerGap(80, Short.MAX_VALUE))
+                    .addComponent(jButtonAñadirCritica)
+                    .addComponent(jLabel2))
+                .addGap(33, 33, 33)
+                .addComponent(jButtonEditarCriticas)
+                .addGap(24, 24, 24))
         );
 
         jTabbedPane.addTab("Criticas", jPanelCriticas);
@@ -270,67 +382,89 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel10.setText("(Al eliminar un critico se eliminaran tambien sus criticas como consecuencia)");
 
+        jButtonEditarCritico.setText("Editar Nombre");
+        jButtonEditarCritico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarCriticoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelCriticosLayout = new javax.swing.GroupLayout(jPanelCriticos);
         jPanelCriticos.setLayout(jPanelCriticosLayout);
         jPanelCriticosLayout.setHorizontalGroup(
             jPanelCriticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCriticosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 873, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(jPanelCriticosLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addGroup(jPanelCriticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanelCriticosLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldnombre_Critico))
-                    .addGroup(jPanelCriticosLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldid_Critico, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelCriticosLayout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelCriticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonAñadirCritico)
-                            .addComponent(jTextFieldcod_Critico_Critica))))
                 .addGroup(jPanelCriticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelCriticosLayout.createSequentialGroup()
-                        .addGap(127, 127, 127)
+                        .addComponent(jButtonAñadirCritico)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanelCriticosLayout.createSequentialGroup()
+                        .addGroup(jPanelCriticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanelCriticosLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldnombre_Critico, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
+                            .addGroup(jPanelCriticosLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldid_Critico))
+                            .addGroup(jPanelCriticosLayout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldcod_Critico_Critica)))
+                        .addGap(47, 47, 47)
+                        .addComponent(jButtonEditarCritico)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(jPanelCriticosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 908, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCriticosLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelCriticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCriticosLayout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(22, 22, 22))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCriticosLayout.createSequentialGroup()
                         .addComponent(jTextFieldBorrarCritico, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonBorrarCritico))
-                    .addGroup(jPanelCriticosLayout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(jLabel10)))
+                        .addComponent(jButtonBorrarCritico)
+                        .addGap(191, 191, 191))))
+            .addGroup(jPanelCriticosLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabelinfo_Critico, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelCriticosLayout.setVerticalGroup(
             jPanelCriticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCriticosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelCriticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelCriticosLayout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addGroup(jPanelCriticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jTextFieldid_Critico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldBorrarCritico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonBorrarCritico))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanelCriticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jTextFieldnombre_Critico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelinfo_Critico, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addGroup(jPanelCriticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextFieldid_Critico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelCriticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextFieldnombre_Critico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonEditarCritico))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelCriticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jTextFieldcod_Critico_Critica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonAñadirCritico)
-                .addGap(35, 35, 35))
+                .addGap(43, 43, 43)
+                .addGroup(jPanelCriticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldBorrarCritico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonBorrarCritico, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel10)
+                .addGap(30, 30, 30))
         );
 
         jTabbedPane.addTab("Criticos", jPanelCriticos);
@@ -371,7 +505,67 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // BOTON ELIMINAR CRITICO
         manager.eliminarCritico(jTextFieldBorrarCritico.getText());
         mostrarTablaCritico();
+        mostrarTablaCritico();
     }//GEN-LAST:event_jButtonBorrarCriticoActionPerformed
+
+    private void jButtonEditarCriticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarCriticasActionPerformed
+        // BOTON EDITAR CRITICAS
+        try {
+            int filaCritica = jTableCriticas.getSelectedRow();
+            manager.editarCritica((jTableCriticas.getValueAt(filaCritica, 0).toString()),
+                    jTextFieldCritica_Nombre.getText(),
+                    jTextFieldTexto_Critica.getText(),
+                    jTextFieldPuntuacion_Critica.getText()
+            );
+            mostrarTablaCritica();
+            jLabelinfo_Critica.setText("Critica modificada correctamente.");
+        } catch (Exception ex) {
+            jLabelinfo_Critica.setText("Error al modificar la critica.");
+        }
+
+    }//GEN-LAST:event_jButtonEditarCriticasActionPerformed
+
+    private void jButtonEditarCriticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarCriticoActionPerformed
+        // BOTON EDITAR CRITICO
+        try {
+            int filaCritico = jTableCriticos.getSelectedRow();
+            manager.editarCritico((jTableCriticos.getValueAt(filaCritico, 0).toString()),
+                    jTextFieldnombre_Critico.getText());
+            mostrarTablaCritico();
+            jLabelinfo_Critico.setText("Critico modificada correctamente.");
+        } catch (Exception ex) {
+            jLabelinfo_Critico.setText("Error al modificar al critico.");
+        }
+    }//GEN-LAST:event_jButtonEditarCriticoActionPerformed
+
+    private void jButtonBuscarDirectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarDirectorActionPerformed
+        //BUSCAR DIRECTOR
+        try {
+            //manager.cosulta_PeliculasDirector(jTextFieldBusqueda_Director.getText());
+            jTextPane1.setText(manager.cosulta_PeliculasDirector(jTextFieldBusqueda_Director.getText()));
+        } catch (Exception ex) {
+            jLabelinfo_Peliculas.setText("Error en la busqueda.");
+        }
+    }//GEN-LAST:event_jButtonBuscarDirectorActionPerformed
+
+    private void jButtonBuscarCriticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarCriticasActionPerformed
+        //BUSCAR CRITICAS
+        try {
+            jTextPane1.setText(manager.cosulta_CriticasCritico(jTextFieldBusquedaCriticas.getText()));
+        } catch (Exception ex) {
+            jLabelinfo_Peliculas.setText("Error en la busqueda.");
+        }
+    }//GEN-LAST:event_jButtonBuscarCriticasActionPerformed
+
+    private void jButtonBuscarGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarGeneroActionPerformed
+        //BUSCAR GENERO
+        try {
+            jTextPane1.setText(manager.cosulta_Genero(jTextFieldBuscarGenero.getText()));
+        } catch (Exception ex) {
+            jLabelinfo_Peliculas.setText("Error en la busqueda.");
+        }
+        
+    }//GEN-LAST:event_jButtonBuscarGeneroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -413,27 +607,42 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAñadirCritico;
     private javax.swing.JButton jButtonBorrarCritica;
     private javax.swing.JButton jButtonBorrarCritico;
+    private javax.swing.JButton jButtonBuscarCriticas;
+    private javax.swing.JButton jButtonBuscarDirector;
+    private javax.swing.JButton jButtonBuscarGenero;
+    private javax.swing.JButton jButtonEditarCriticas;
+    private javax.swing.JButton jButtonEditarCritico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelinfo_Critica;
+    private javax.swing.JLabel jLabelinfo_Critico;
+    private javax.swing.JLabel jLabelinfo_Peliculas;
     private javax.swing.JPanel jPanelCriticas;
     private javax.swing.JPanel jPanelCriticos;
     private javax.swing.JPanel jPanelPeliculas;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane;
     private javax.swing.JTable jTableCriticas;
     private javax.swing.JTable jTableCriticos;
     private javax.swing.JTable jTablePeliculas;
     private javax.swing.JTextField jTextFieldBorrarCritica;
     private javax.swing.JTextField jTextFieldBorrarCritico;
+    private javax.swing.JTextField jTextFieldBuscarGenero;
+    private javax.swing.JTextField jTextFieldBusquedaCriticas;
+    private javax.swing.JTextField jTextFieldBusqueda_Director;
     private javax.swing.JTextField jTextFieldCritica_Nombre;
     private javax.swing.JTextField jTextFieldPuntuacion_Critica;
     private javax.swing.JTextField jTextFieldTexto_Critica;
@@ -442,6 +651,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldid_Critica;
     private javax.swing.JTextField jTextFieldid_Critico;
     private javax.swing.JTextField jTextFieldnombre_Critico;
+    private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 
     private void mostrarTablaPelicula() {
@@ -553,16 +763,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 }
             }
         });
-        //EDITAR TABLA CANCIONES
-        //SOLO SE EDITA EL NOMBRE Y LA DURACION DE LA CANCION
+        //EDITAR TABLA CRITICO
+        //SOLO SE EDITA EL NOMBRE DEL CRITICO
         jTableCriticos.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent ev) {
-                int filaCanciones = jTableCriticos.getSelectedRow();
-                if (filaCanciones == -1) {
+                int filaCritico = jTableCriticos.getSelectedRow();
+                if (filaCritico == -1) {
                     JOptionPane.showMessageDialog(null, "No has seleccionado ninguna fila.");
                 } else {
-                    String nombreCritico = (String) jTableCriticos.getValueAt(filaCanciones, 1);
+                    String nombreCritico = (String) jTableCriticos.getValueAt(filaCritico, 1);
                     jTextFieldnombre_Critico.setText(nombreCritico);
                 }
             }
