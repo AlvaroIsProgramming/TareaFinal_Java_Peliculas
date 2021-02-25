@@ -505,7 +505,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // BOTON ELIMINAR CRITICO
         manager.eliminarCritico(jTextFieldBorrarCritico.getText());
         mostrarTablaCritico();
-        mostrarTablaCritico();
+        mostrarTablaCritica();
     }//GEN-LAST:event_jButtonBorrarCriticoActionPerformed
 
     private void jButtonEditarCriticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarCriticasActionPerformed
@@ -541,7 +541,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jButtonBuscarDirectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarDirectorActionPerformed
         //BUSCAR DIRECTOR
         try {
-            //manager.cosulta_PeliculasDirector(jTextFieldBusqueda_Director.getText());
             jTextPane1.setText(manager.cosulta_PeliculasDirector(jTextFieldBusqueda_Director.getText()));
         } catch (Exception ex) {
             jLabelinfo_Peliculas.setText("Error en la busqueda.");
@@ -658,7 +657,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         //ESTE METODO ES PARA CARGAR LOS DATOS DE LA TABLA PELICULA
         //SE CREA LA TABLA
         DefaultTableModel modelo = new DefaultTableModel();
-        //AQUI SE INSERTA LA CONSULTA QUE VA EN POOLCONEXIONES
+        //AQUI SE INSERTA LA CONSULTA QUE VA EN GESTOR DE CONEXIONES
         //CONSULTA SIMPLE YA QUE COGEMOS TODOS LOS DATOS
         ResultSet rs = (ResultSet) manager.mostrarTabla("SELECT * FROM pelicula ORDER BY id_Pelicula");
         try {
@@ -688,7 +687,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         //ESTE METODO ES PARA CARGAR LOS DATOS DE LA TABLA CRITICO
         //SE CREA LA TABLA
         DefaultTableModel modelo = new DefaultTableModel();
-        //AQUI SE INSERTA LA CONSULTA QUE VA EN POOLCONEXIONES
+        //AQUI SE INSERTA LA CONSULTA QUE VA EN GESTORDECONEXIONES
         //CONSULTA SIMPLE YA QUE COGEMOS TODOS LOS DATOS
         ResultSet rs = (ResultSet) manager.mostrarTabla("SELECT * FROM critica ORDER BY id_Critica");
         try {
@@ -716,7 +715,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         //ESTE METODO ES PARA CARGAR LOS DATOS DE LA TABLA CRITICO
         //SE CREA LA TABLA
         DefaultTableModel modelo = new DefaultTableModel();
-        //AQUI SE INSERTA LA CONSULTA QUE VA EN POOLCONEXIONES
+        //AQUI SE INSERTA LA CONSULTA QUE VA EN GESTORDECONEXIONES
         //CONSULTA SIMPLE YA QUE COGEMOS TODOS LOS DATOS
         ResultSet rs = (ResultSet) manager.mostrarTabla("SELECT * FROM critico ORDER BY id_Critico");
         try {
@@ -744,8 +743,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void editarTablas() {
         // METODO PARA QUE SE AUTOCOMPLETEN LOS CAMPOS AL PULSAR UN DATO DE LA TABLA
-        //EDITAR TABLA ALBUM
-        //SOLO SE EDITA EL NOMBRE, LA DISCOGRAFICA, EL LIDER Y EL GENERO
+        //EDITAR TABLA CRITICA
+        //SOLO SE EDITA EL NOMBRE, LA CRITICA Y LA PUNTUACION
         jTableCriticas.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -756,10 +755,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
                     String nombreCritica = (String) jTableCriticas.getValueAt(filaCriticas, 2);
                     String textoCritica = (String) jTableCriticas.getValueAt(filaCriticas, 3);
-                    String puntiacionCritica = (String) jTableCriticas.getValueAt(filaCriticas, 4);
+                    String puntuacionCritica = (String) jTableCriticas.getValueAt(filaCriticas, 4);
                     jTextFieldCritica_Nombre.setText(nombreCritica);
                     jTextFieldTexto_Critica.setText(textoCritica);
-                    jTextFieldPuntuacion_Critica.setText(puntiacionCritica);
+                    jTextFieldPuntuacion_Critica.setText(puntuacionCritica);
                 }
             }
         });

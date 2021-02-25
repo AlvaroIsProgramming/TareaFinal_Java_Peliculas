@@ -189,7 +189,7 @@ public class GestorDeConexiones {
             conexion.setAutoCommit(false);
             sta = conexion.createStatement();
 
-            //sta.executeUpdate("DELETE FROM critico WHERE id_Critico_Critica= " + id_Critica + ";");
+    
             sta.executeUpdate("DELETE FROM critica WHERE id_Critica = " + id_Critica + ";");
 
             sta.close();
@@ -216,8 +216,8 @@ public class GestorDeConexiones {
             conexion.setAutoCommit(false);
             sta = conexion.createStatement();
 
-            sta.executeUpdate("DELETE FROM critica WHERE cod_critico = " + cod_Critico_Critica + ";");
-            sta.executeUpdate("DELETE FROM critico WHERE cod_Critico_Critica = " + cod_Critico_Critica + ";");
+            sta.executeUpdate("DELETE FROM critica WHERE cod_critico = '" + cod_Critico_Critica + "';");
+            sta.executeUpdate("DELETE FROM critico WHERE cod_Critico_Critica = '" + cod_Critico_Critica + "';");
 
             sta.close();
             conexion.commit();
